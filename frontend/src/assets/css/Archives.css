@@ -4,12 +4,18 @@
 }
 
 .upper_page {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    width: 100%;
 }
 
 /*header*/
+.archives {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFF5E1;
+}
 
 .header {
     display: flex;
@@ -34,13 +40,13 @@
 
 .archives .header a {
     text-decoration: none;
-    color: white;
+    color: black;
     opacity: 0.5;
 }
 
 .archives .header a:hover {
     text-decoration: none;
-    color: white;
+    color: black;
     opacity: 1;
     border-bottom: 1px white solid;
     animation: fadeIn 0.5s ease-in forwards;
@@ -53,7 +59,7 @@
     }
     to {
         opacity: 1;
-        border-bottom: 1px white solid;
+        border-bottom: 1px black solid;
     }
 }
 
@@ -123,12 +129,12 @@
     width: 100%;
     height: 100%;
     background: none;
-    background-color: black;
+    background-color: #BFA181;
     z-index: -1;
 }
 /*Title*/
 .archives-web-subtitle {
-    color: wheat;
+    color: black;
     font-size: 30px;
     padding: 10px 0;
     width: 100%;
@@ -154,6 +160,7 @@
     justify-content: center;
     border: 1px solid black;
     border-radius: 20px;
+    background-color: white;
 }
 
 .archives-search-bar img {
@@ -183,6 +190,23 @@
     animation: slide-left 1s forwards;
 }
 
+.archives-hearts {
+    width: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.archives-hearts button {
+    background-color: transparent;
+    border: none;
+}
+
+.archives-hearts img {
+    width: 100%;
+}
+
 .archives-main-section {
     margin-top: 20px;
     width: 100%;
@@ -191,14 +215,32 @@
     justify-content: center;
 }
 
+/* Sliding Effect for Category Section */
+.archives-main-section {
+    animation: slideUp 1s ease-in-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 .archives-main-content {
     padding-top: 10px;
     width: 80%;
+    height: auto;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     border: 1px solid black;
     border-radius: 10px;
+    background-color: white;
 }
 
 .archives-category-section {
@@ -220,6 +262,7 @@
     display: flex;
     flex-direction: column;
     margin-left: 10px;
+    align-items: flex-start;
 }
 
 .archives-category-list a {
@@ -239,6 +282,7 @@
 }
 
 .archives-book-list {
+    width: 90%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -257,16 +301,46 @@
 }
 
 .archives-book-card img {
-    width: 90%;
-    height: 70%;
-    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
+.book-buttons {
+    display: flex;
+    width: 100%;
+}
+
+.book-buttons img {
+    width: 100%;
+    max-height: 100%;
+}
+
+.heart-btn {
+    width: 30%;
+    height: 100%;
+}
+
+.archives-read {
+    width: 70%;
+    height: 100%;
+}
+
+
 .book-info {
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+}
+
+.book-info h2 {
+    font-size: 1rem;
+    white-space: nowrap;      /* Prevents text from wrapping */
+    overflow: hidden;         /* Hides overflowing text */
+    text-overflow: ellipsis;  /* Adds "..." at the cutoff */
+    width: 100%;             /* Set a fixed width */
 }
 
 .archives-lower-page {
@@ -286,6 +360,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     border-top: 1px solid rgba(0, 0, 0, 0.5);
+    background-color: #BFA181;
 }
 
 .archives-footer-section {
@@ -337,4 +412,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #BFA181;
 }

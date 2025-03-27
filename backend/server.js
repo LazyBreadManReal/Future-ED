@@ -173,6 +173,19 @@ app.delete('/api/items/:id', (req, res) => {
   });
 });
 
+//get specific book
+app.get("/api/book/:id", (req, res) => {
+  const { id } = req.params;
+
+  db.get(`SELECT * FROM items WHERE id = ?`, [id], (err, row) => {
+      if (err) return res.status(500).json({ error: err.message });
+      if (!row) return res.status(404).json({ error: "Book not found" });
+
+      res.json(row);
+  });
+});
+
+
 //API search item 
 app.get("/api/search/:search_key", (req, res) => {
   const { search_key } = req.params;
