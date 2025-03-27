@@ -4,6 +4,7 @@ import LoginPage from "./assets/components/LoginPage";
 import SignupPage from "./assets/components/SignupPage";
 import LogoutPage from "./assets/components/LogoutPage";
 import Archives from "./assets/components/Archives";
+import BookPage from "./assets/components/BookPage";
 import ContentUploadPage from "./assets/components/ContentUploadPage";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/logout" element={<LogoutPage />} />
         <Route path="/archives" element={<Archives />} />
+        <Route path="/book/:id" element={<BookPage />} />
       </Routes>
     </Router>
   );

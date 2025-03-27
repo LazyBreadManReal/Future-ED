@@ -117,7 +117,7 @@ function Archives() {
                     </nav>
                 </div>
                 <div className="center-header">
-                    <img src="src/assets/images/website logo.png" alt="website_logo" />
+                    <img src="src/assets/images/website logo inverted.png" alt="website_logo" />
                 </div>
                 <div className="right-header">
                     <nav>
@@ -145,8 +145,8 @@ function Archives() {
                 <input type="text" placeholder="Search Me Up" onChange={(e) => setSearch(e.target.value)}/>
                 <button className="search-btn" onClick={handleSearch}>Search</button>
                 </div>
-                <div className="hearts">
-                    <button><img src="src/assets/images/heart-icon.png" alt="" onClick={getHearts}/></button>
+                <div className="archives-hearts">
+                    <button><img src="src/assets/images/heart-icon-filled.png" alt="" onClick={getHearts}/></button>
                 </div>
             </div>
             <div className="archives-main-section">
@@ -178,12 +178,10 @@ function Archives() {
                                     />  
                                     <div className="book-info">
                                         <h2>{book.title}</h2>
-                                        <h3>{book.author}</h3>
-                                        <p>{book.publishedDate}</p>
-                                        <p>{book.genre}</p>
-                                        <p>{book.rating}</p>
-                                        <button onClick={() => handleHeart(book)}>Heart</button>
-                                        <button>Read</button>
+                                        <div className="book-buttons">
+                                            <button onClick={() => handleHeart(book)} className="heart-btn"> <img src="src/assets/images/heart-icon.png" alt="" /> </button>
+                                            <button className="archives-read"onClick={() => window.location.href = `/book/${book.id}`}>Read</button>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
