@@ -6,6 +6,7 @@ import LogoutPage from "./assets/components/LogoutPage";
 import Archives from "./assets/components/Archives";
 import BookPage from "./assets/components/BookPage";
 import ContentUploadPage from "./assets/components/ContentUploadPage";
+import AboutUs from "./assets/components/AboustUs";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/logout" element={<LogoutPage />} />
         <Route path="/archives" element={<Archives />} />
         <Route path="/book/:id" element={<BookPage />} />
+        <Route path="/about" element={<AboutUs />} />
       </Routes>
     </Router>
   );

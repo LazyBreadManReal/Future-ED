@@ -10,6 +10,7 @@
 background-attachment: fixed;
 background-repeat: no-repeat;
 background-size: 100%;
+animation: slideUp 1s ease-in-out;
 }
 
 .container {

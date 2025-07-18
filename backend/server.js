@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
-const SECRET_KEY = "KEY HERE RAHH";
+const SECRET_KEY = process.env.SECRET_KEY;
 
 // Initialize database
 const db = new sqlite3.Database("./database.db", err => {
@@ -39,6 +39,8 @@ db.run(`
     user_id INTEGER,
     title TEXT NOT NULL,
     content TEXT NOT NULL,
+    stock INTEGER,
+    views INTEGER,
     image_path TEXT NOT NULL,
     FOREIGN KEY(user_id) REFERENCES users(id)
   )
@@ -57,6 +59,17 @@ db.run(`
 `, (err) => {
   if (err) console.error("Error creating hearts table:", err.message);
 });
+
+db.run(`
+  CREATE TABLE IF NOT EXISTS comments (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER,
+      date TEXT DEFAULT (datetime('now')),
+      item_id INTEGER,
+      comment TEXT
+  )
+`);
+
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -137,20 +150,22 @@ app.post("/api/signup", (req, res) => {
 
 // API endpoint to upload an image
 app.post('/api/upload', upload.single('image'), (req, res) => {
-  const { user_id, title, content } = req.body;
+  const { user_id, title, content, stock } = req.body; // stock is now required from the client
   const imagePath = `/uploads/${req.file.filename}`;
+  const views = 0; // default to 0 when item is uploaded
 
   db.run(
-      `INSERT INTO items (user_id, title, content, image_path) VALUES (?, ?, ?, ?)`,
-      [user_id, title, content, imagePath],
+      `INSERT INTO items (user_id, title, content, stock, views, image_path) VALUES (?, ?, ?, ?, ?, ?)`,
+      [user_id, title, content, stock, views, imagePath],
       function (err) {
           if (err) {
               return res.status(500).json({ error: err.message });
           }
-          res.json({ id: this.lastID, title, content, imagePath });
+          res.json({ id: this.lastID, user_id, title, content, stock, views, imagePath });
       }
   );
 });
+
 
 // API endpoint to get uploaded items
 app.get('/api/items', (req, res) => {
@@ -173,17 +188,53 @@ app.delete('/api/items/:id', (req, res) => {
   });
 });
 
-//get specific book
+// get specific book + increment views
 app.get("/api/book/:id", (req, res) => {
   const { id } = req.params;
 
-  db.get(`SELECT * FROM items WHERE id = ?`, [id], (err, row) => {
+  // First increment the views
+  db.run(`UPDATE items SET views = views + 1 WHERE id = ?`, [id], function (err) {
       if (err) return res.status(500).json({ error: err.message });
-      if (!row) return res.status(404).json({ error: "Book not found" });
 
-      res.json(row);
+      // Then fetch the updated book
+      db.get(`SELECT * FROM items WHERE id = ?`, [id], (err, row) => {
+          if (err) return res.status(500).json({ error: err.message });
+          if (!row) return res.status(404).json({ error: "Book not found" });
+
+          res.json(row);
+      });
   });
 });
+
+// API endpoint to decrease stock
+app.post('/api/items/:id/decrease', (req, res) => {
+  const { id } = req.params;
+  const { amount } = req.body; // pass amount you want to decrease
+
+  if (!amount || amount <= 0) {
+      return res.status(400).json({ error: "Invalid decrease amount" });
+  }
+
+  // Check current stock first
+  db.get(`SELECT stock FROM items WHERE id = ?`, [id], (err, row) => {
+      if (err) return res.status(500).json({ error: err.message });
+      if (!row) return res.status(404).json({ error: "Item not found" });
+
+      const newStock = row.stock - amount;
+
+      if (newStock < 0) {
+          return res.status(400).json({ error: "Not enough stock" });
+      }
+
+      // Update stock
+      db.run(`UPDATE items SET stock = ? WHERE id = ?`, [newStock, id], function (err) {
+          if (err) return res.status(500).json({ error: err.message });
+
+          res.json({ message: "Stock decreased successfully", newStock });
+      });
+  });
+});
+
 
 
 //API search item 
@@ -247,6 +298,49 @@ app.post("/api/toggle-heart", (req, res) => {
               res.json({ message: "Heart added", liked: true });
           });
       }
+  });
+});
+
+// --- Create comment (auto date only) ---
+app.post('/api/comments', (req, res) => {
+  const { user_id, item_id, comment } = req.body;
+  const date = new Date().toISOString(); // automatically set date
+
+  db.run(`INSERT INTO comments (user_id, date, item_id, comment) VALUES (?, ?, ?, ?)`,
+      [user_id, date, item_id, comment],
+      function (err) {
+          if (err) return res.status(500).json({ error: err.message });
+          res.json({ id: this.lastID, user_id, date, item_id, comment });
+      });
+});
+
+// --- Get comments ---
+app.get('/api/comments/:item_id', (req, res) => {
+  const { item_id } = req.params;
+  db.all(`SELECT * FROM comments WHERE item_id = ?`, [item_id], (err, rows) => {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json(rows);
+  });
+});
+
+// --- Update comment ---
+app.put('/api/comments/:id', (req, res) => {
+  const { id } = req.params;
+  const { comment } = req.body;
+
+  db.run(`UPDATE comments SET comment = ? WHERE id = ?`, [comment, id], function (err) {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json({ message: 'Comment updated' });
+  });
+});
+
+// --- Delete comment ---
+app.delete('/api/comments/:id', (req, res) => {
+  const { id } = req.params;
+
+  db.run(`DELETE FROM comments WHERE id = ?`, [id], function (err) {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json({ message: 'Comment deleted' });
   });
 });
 

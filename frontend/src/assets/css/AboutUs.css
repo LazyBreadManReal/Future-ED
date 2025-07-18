@@ -10,7 +10,7 @@
 }
 
 /*header*/
-.archives {
+.about {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -38,13 +38,13 @@
     }
 }
 
-.archives .header a {
+.about .header a {
     text-decoration: none;
     color: black;
     opacity: 0.5;
 }
 
-.archives .header a:hover {
+.about .header a:hover {
     text-decoration: none;
     color: black;
     opacity: 1;
@@ -133,7 +133,7 @@
     z-index: -1;
 }
 /*Title*/
-.archives-web-subtitle {
+.about-web-subtitle {
     color: black;
     font-size: 30px;
     padding: 10px 0;
@@ -143,7 +143,7 @@
     justify-content: center;
 }
 
-.archives-search-bar-section {
+.about-search-bar-section {
     width: 100%;
     height: 50px;
     display: flex;
@@ -153,7 +153,7 @@
     padding-bottom: 10px;
 }
 
-.archives-search-bar {
+.about-search-bar {
     width: 60%;
     height: 100%;
     display: flex;
@@ -163,12 +163,12 @@
     background-color: white;
 }
 
-.archives-search-bar img {
+.about-search-bar img {
     max-width: 20%;
     max-height: 100%;
 }
 
-.archives-search-bar input {
+.about-search-bar input {
     width: 80%;
     height: 100%;
     padding: 0 1%;
@@ -178,7 +178,7 @@
     background-color: transparent;
 }
 
-.archives-search-bar button {
+.about-search-bar button {
     width: 10%;
     background-color: transparent;
     border: none;
@@ -190,7 +190,7 @@
     animation: slide-left 1s forwards;
 }
 
-.archives-hearts {
+.about-hearts {
     width: 5%;
     display: flex;
     align-items: center;
@@ -198,17 +198,18 @@
     background-color: transparent;
 }
 
-.archives-hearts button {
+.about-hearts button {
     background-color: transparent;
     border: none;
 }
 
-.archives-hearts img {
+.about-hearts img {
     width: 100%;
 }
 
-.archives-main-section {
+.about-main-section {
     margin-top: 20px;
+    margin-bottom: 200px;
     width: 100%;
     display: flex;
     align-items: flex-start;
@@ -216,7 +217,7 @@
 }
 
 /* Sliding Effect for Category Section */
-.archives-main-section {
+.about-main-section {
     animation: slideUp 1s ease-in-out;
 }
 
@@ -231,7 +232,7 @@
     }
 }
 
-.archives-main-content {
+.about-main-content {
     padding-top: 10px;
     width: 80%;
     height: auto;
@@ -243,8 +244,9 @@
     background-color: white;
 }
 
-.archives-category-section {
-    width: 20%;
+.about-category-section {
+    width: 70%;
+    height: 300px;
     margin: 20px;
     display: flex;
     flex-direction: column;
@@ -252,26 +254,26 @@
     justify-content: flex-start;
 }
 
-.archives-category-section h2 {
+.about-category-section p {
     width: 100%;
-    margin-bottom: 10px;
-    border-bottom: 1px solid gray;
+    font-size: 30px;
+    text-align: center;
 }
 
-.archives-category-list {
+.about-category-list {
     display: flex;
     flex-direction: column;
     margin-left: 10px;
     align-items: flex-start;
 }
 
-.archives-category-list a {
+.about-category-list a {
     margin-bottom: 10px;
     text-decoration: none;
     color: rgba(0, 0, 0, 0.75);
 }
 
-.archives-section {
+.about-section {
     width: 70%;
     margin: 20px;
     display: flex;
@@ -281,9 +283,8 @@
     border-left: 1px solid black;
 }
 
-.archives-book-list {
+.about-book-list {
     width: 90%;
-    height: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -291,17 +292,17 @@
     justify-content: space-around;
 }
 
-.archives-book-card {
+.about-book-card {
     margin-top: 10px;
     width: 18%;
-    height: 400px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.archives-book-card img {
+.about-book-card img {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -322,7 +323,7 @@
     height: 100%;
 }
 
-.archives-read {
+.about-read {
     width: 70%;
     height: 100%;
 }
@@ -344,7 +345,7 @@
     width: 100%;             /* Set a fixed width */
 }
 
-.archives-lower-page {
+.about-lower-page {
     width: 100%;
     height: 200px;
     display: flex;
@@ -352,7 +353,7 @@
     align-items: center;
 }
 
-.archives-footer {
+.about-footer {
     margin-top: 3%;
     width: 100%;
     height: 200px;
@@ -364,7 +365,7 @@
     background-color: #BFA181;
 }
 
-.archives-footer-section {
+.about-footer-section {
     margin-top: 3%;
     width: 22%;
     height: 50%;
@@ -375,17 +376,17 @@
     font-size: 90%;
 }
 
-.archives-footer-section h1 {
+.about-footer-section h1 {
     font-size: 90%;
     text-align: left;
 }
 
-.archives-footer-section li {
+.about-footer-section li {
     font-size: 90%;
     list-style: none;
 }
 
-.archives-footer-logo {
+.about-footer-logo {
     margin-left: 4%;
     width: 30%;
     height: 80%;
@@ -394,22 +395,22 @@
     justify-content: flex-start;
 }
 
-.archives-footer-logo img {
+.about-footer-logo img {
     max-width: 30%;
 }
 
-.archives-footer-logo-text {
+.about-footer-logo-text {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.archives-footer-logo-title {
+.about-footer-logo-title {
     border-bottom: 1px solid black;
 }
 
-.archives-footer-logo-messege {
+.about-footer-logo-messege {
     display: flex;
     justify-content: center;
     align-items: center;

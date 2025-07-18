@@ -21,7 +21,7 @@
 .book-page-section {
     width: 100%;
     padding: 40px 0;
-    height: 400px;
+    height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,8 +49,8 @@
 }
 
 .book img {
-    width: 40%;
-    max-height: 80%;
+    max-width: 40%;
+    height: 80%;
 }
 
 .book-page-details {
@@ -60,4 +60,135 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.book-page-details h1 {
+    font-size: 2rem;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.book-page-details h2 {
+    font-size: 1.3rem;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+.book-page-details p {
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    max-width: 90%;
+    text-align: justify;
+}
+
+.book-page-details button {
+    margin-top: 5px;
+    margin-right: 10px;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.book-page-details button:hover {
+    background-color: #45a049;
+}
+
+.comment-section {
+    width: 80%;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-section h3 {
+    font-size: 1.5rem;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+.comments-list {
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment {
+    width: 95%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.comment p {
+    font-size: 0.95rem;
+    color: #333;
+    margin: 4px 0;
+    word-wrap: break-word;
+}
+
+.comment strong {
+    color: #555;
+}
+
+.comment-section form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-section textarea {
+    width: 95%;
+    height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px;
+    resize: none;
+    margin-bottom: 10px;
+    font-family: inherit;
+}
+
+.comment-section button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.comment-section button:hover {
+    background-color: #45a049;
+}
+
+.comment button {
+    margin-top: 5px;
+    padding: 5px 10px;
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.comment button:hover {
+    background-color: #c9302c;
 }

@@ -123,7 +123,7 @@ function Archives() {
                     <nav>
                     <ul>
                         <li>
-                        <a href="#">About</a>
+                        <a href="http://localhost:5173/about">About</a>
                         </li>
                         <li>
                         <a href="http://localhost:5173/login">{name ? name : "Account"} </a>

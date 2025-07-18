@@ -92,7 +92,7 @@ function HomePage() {
                 <nav>
                 <ul>
                     <li>
-                    <a href="#">About</a>
+                    <a href="http://localhost:5173/about">About</a>
                     </li>
                     <li>
                     <a href="http://localhost:5173/login">{name ? name : "Account"} </a>
@@ -227,7 +227,7 @@ function HomePage() {
                                     alt={book.title}
                                     className="book-cover"
                                 />
-                                <button className="preview-btn">Preview</button>
+                                <button className="preview-btn" onClick={() => window.location.href = `/book/${book.id}`}>Preview</button>
                             </div>
                         ))}
                     </div>
