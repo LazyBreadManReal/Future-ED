@@ -51,6 +51,7 @@ SECRET_KEY=your-very-secret-key
 
 #### Then go to your terminal and run:
 ```bash
+cd ..
 npm run dev
 ```
 
